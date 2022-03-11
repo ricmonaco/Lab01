@@ -31,15 +31,55 @@ public class FXMLController {
 
     @FXML
     private Button btnReset;
+    
+    @FXML
+    private Button btnCancella;
+    
+    @FXML
+    private TextArea txtTempo;
 
     @FXML
     void doInsert(ActionEvent event) {
     	// TODO
+    	
+    	long start, end;
+    	start = System.nanoTime();
+    	this.elenco.addParola(this.txtParola.getText());
+    	this.txtResult.setText(elenco.getElenco().toString());
+    	end = System.nanoTime();
+    	
+    	String s = ""+ (end - start) + " ns";
+    	
+    	this.txtTempo.setText(s);
     }
 
     @FXML
     void doReset(ActionEvent event) {
     	// TODO
+    	long start, end;
+    	start = System.nanoTime();
+    	this.elenco.reset();
+    	this.txtResult.setText("");
+    	this.txtParola.setText("");
+    	end = System.nanoTime();
+    	
+    	String s = ""+ (end - start) + " ns";
+    	
+    	this.txtTempo.setText(s);
+    	
+    }
+    
+    @FXML
+    void doDelete(ActionEvent event) {
+    	long start, end;
+    	start = System.nanoTime();
+    	this.elenco.cancella(this.txtParola.getText());
+    	this.txtResult.setText(elenco.getElenco().toString());
+    	end = System.nanoTime();
+    	
+    	String s = ""+ (end - start) + " ns";
+    	
+    	this.txtTempo.setText(s);	
     }
 
     @FXML
